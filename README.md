@@ -77,6 +77,12 @@
         <h2>Přidat peníze</h2>
         <button class="button" onclick="showAddFunds()">Přidej peníze</button>
         <button class="button" onclick="logout()">Odhlásit se</button>
+
+        <!-- Sekce s emailem a textem -->
+        <div id="contactMessage" style="margin-top: 20px; display: none;">
+            <p>Kontaktujte nás na emailu: <a href="mailto:capolvoking@gmail.com" style="color: #28a745;">capolvoking@gmail.com</a></p>
+            <p>Jste přihlášeni, můžete hrát a vkládat peníze!</p>
+        </div>
     </div>
 
     <!-- Formulář pro přidání peněz -->
@@ -86,12 +92,6 @@
         <input type="number" id="amount" placeholder="Kolik chcete přidat?" min="1">
         <button class="button" onclick="addFunds()">Přidat</button>
         <button class="button" onclick="hideAddFunds()">Zpět</button>
-    </div>
-
-    <!-- Kontakt -->
-    <div id="contact">
-        <h2>Kontakt pro převod peněz</h2>
-        <p>Pro převod napište na email: <a href="mailto:capolvoking@gmail.com" style="color: #28a745;">capolvoking@gmail.com</a></p>
     </div>
 
     <script>
@@ -104,7 +104,7 @@
             document.getElementById("loginForm").style.display = "block";
             document.getElementById("registerForm").style.display = "none";
             document.getElementById("addFundsForm").style.display = "none";
-            document.getElementById("contact").style.display = "none";
+            document.getElementById("contactMessage").style.display = "none";
         }
 
         function showRegister() {
@@ -147,6 +147,7 @@
                 document.getElementById("loginForm").style.display = "none";
                 document.getElementById("registerForm").style.display = "none";
                 document.getElementById("gameArea").style.display = "block";
+                document.getElementById("contactMessage").style.display = "block";
                 updateBalance();
             } else {
                 alert("Špatné uživatelské jméno nebo heslo.");

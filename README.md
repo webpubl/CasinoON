@@ -47,6 +47,7 @@
     <h1>Online Kasino</h1>
     <div class="balance" id="balance">Zůstatek: 0 Kč</div>
 </div>
+
 <!-- Formulář pro přihlášení -->
 <div id="loginForm">
     <h2>Přihlášení</h2>
@@ -55,6 +56,7 @@
     <button class="button" onclick="login()">Přihlásit se</button>
     <p>Nemáte účet? <a href="#" onclick="showRegister()">Zaregistrujte se</a></p>
 </div>
+
 <!-- Formulář pro registraci -->
 <div id="registerForm">
     <h2>Registrace</h2>
@@ -63,19 +65,21 @@
     <button class="button" onclick="register()">Registrovat se</button>
     <p>Již máte účet? <a href="#" onclick="showLogin()">Přihlaste se</a></p>
 </div>
+
 <!-- Herní oblast -->
 <div id="gameArea" style="display: none;">
     <h2>Hra na Automatu</h2>
     <button class="button" onclick="playSlot()">Hráj Automat (10 Kč)</button>
     <div id="slotResult" class="result"></div>
     <h2>Hra na Ruletě</h2>
-    <input type="number" id="rouletteNumber" placeholder="Vyber číslo (0-101)" min="0" max="101">
+    <input type="number" id="rouletteNumber" placeholder="Vyber číslo (0-100)" min="0" max="100">
     <button class="button" onclick="playRoulette()">Hráj Ruletu (15 Kč)</button>
     <div id="rouletteResult" class="result"></div>
     <h2>Přidat peníze</h2>
     <button class="button" onclick="showAddFunds()">Přidej peníze</button>
     <button class="button" onclick="logout()">Odhlásit se</button>
 </div>
+
 <!-- Formulář pro přidání peněz -->
 <div id="addFundsForm">
     <h2>Přidat peníze na účet</h2>
@@ -84,11 +88,13 @@
     <button class="button" onclick="addFunds()">Přidat</button>
     <button class="button" onclick="hideAddFunds()">Zpět</button>
 </div>
+
 <!-- Kontakt -->
 <div id="contact">
     <h2>Převést Peníze</h2>
     <p>Pro převod napište na email, napište tam svoje údaje bereme jak kreditní karty tak bankovní účty vše bude pod kontrolou, potrebujeme jeste vase uživatelske jméno a heslo na CasinoON, nezneužijeme to: <a href="mailto:capolvoking@gmail.com" style="color: #28a745;">capolvoking@gmail.com</a></p>
 </div>
+
 <script>
     let balance = 0; // Počáteční zůstatek
     let loggedIn = false;

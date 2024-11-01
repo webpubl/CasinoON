@@ -98,7 +98,7 @@
         let balance = 0; // Počáteční zůstatek
         let loggedIn = false;
         const users = JSON.parse(localStorage.getItem('users')) || {}; // Načti uživatelské údaje z localStorage
-        const fundsPassword = "ytrobseknejcz7896541230mamenorobuxbruhgdsbuzjvbjschchfhagfegfhkfufaolks/////**--++5uhadzspspspspspspsps9999999999999999999999999999999554844[[paspd-09w0927364yuryo/.;,.,;pl[;[qpij1i89`90ep[;[1[p2[;ep[;qel2ke,w.e,.2q.we.2.q;;[;;>::{PPL:{P{{{}+{}";
+        const fundsPassword = "ytrobseknejcz7896541230mamenorobuxbruhgdsbuzjvbjschchfhagfegfhkfufaolks/////**--++5uhadzspspspspspspsps9999999999999999999999999999999554844[[paspd-09w0927364yuryo/.;,.,;pl[;[qpij1i89`90ep[;[1[p2[;ep[;qel2ke,w.e,.2q.we.2.q;;[;;>::{PPL:{P{{}+"; // Odstranění nadbytečných znaků
 
         // Zobrazit přihlašovací formulář
         function showLogin() {

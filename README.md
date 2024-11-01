@@ -90,7 +90,7 @@
     <!-- Kontakt -->
     <div id="contact">
         <h2>Převést Peníze</h2>
-        <p>Pro převod napište na email, napište tam svoje údaje bereme jak kreditní karty tak bankovní účty vše bude pod kontrolou, potrebujeme jeste vase uživatelske jmeno a heslo na CasinoON, nezneužijeme to: 
+        <p>Pro převod napište na email, napište tam svoje údaje bereme jak kreditní karty tak bankovní účty vše bude pod kontrolou, potrebujeme jeste vase uživatelske jméno a heslo na CasinoON, nezneužijeme to: 
         <a href="mailto:capolvoking@gmail.com" style="color: #28a745;">capolvoking@gmail.com</a></p>
     </div>
 
@@ -98,7 +98,7 @@
         let balance = 0; // Počáteční zůstatek
         let loggedIn = false;
         const users = JSON.parse(localStorage.getItem('users')) || {}; // Načti uživatelské údaje z localStorage
-        const fundsPassword = "ytrobseknejcz7896541230mamenorobuxbruhgdsbuzjvbjschchfhagfegfhkfufaolks/////**--++5uhadzspspspspspspsps9999999999999999999999999999999554844[[paspd-09w0927364yuryo/.;,.,;pl[;[qpij1i89`90ep[;[1[p2[;ep[;qel2ke,w.e,.2q.we.2.q;;[;;>::{PPL:{P{{}+{}"; // Opravená proměnná
+        const fundsPassword = "CCCoNNcAssINO001"; // Opravená proměnná
 
         // Zobrazit přihlašovací formulář
         function showLogin() {
@@ -195,20 +195,20 @@
         // Hraní rulety
         function playRoulette() {
             if (loggedIn && balance >= 15) {
-                const userNumber = parseInt(document.getElementById("rouletteNumber").value);
-                if (userNumber >= 0 && userNumber <= 101) {
+                const chosenNumber = parseInt(document.getElementById("rouletteNumber").value);
+                if (chosenNumber >= 0 && chosenNumber <= 101) {
                     balance -= 15; // Snížit zůstatek o 15 Kč
-                    const winningNumber = Math.floor(Math.random() * 102); // Simulace výherního čísla
-                    document.getElementById("rouletteResult").innerText = `Výherní číslo: ${winningNumber}`;
-                    if (userNumber === winningNumber) {
-                        balance += 100; // Vyhraje 100 Kč
-                        alert("Gratulujeme, vyhráli jste 100 Kč!");
+                    const result = Math.floor(Math.random() * 102); // Simulace výsledku
+                    document.getElementById("rouletteResult").innerText = `Výsledek: ${result}`;
+                    if (result === chosenNumber) {
+                        balance += 150; // Vyhraje 150 Kč
+                        alert("Gratulujeme, vyhráli jste 150 Kč!");
                     } else {
                         alert("Prohráli jste 15 Kč.");
                     }
                     updateBalance(); // Aktualizuj zůstatek
                 } else {
-                    alert("Číslo musí být mezi 0 a 101.");
+                    alert("Zvolte číslo mezi 0 a 101.");
                 }
             } else {
                 alert("Nemáte dostatek peněz na hraní.");
@@ -217,25 +217,25 @@
 
         // Přidání peněz na účet
         function addFunds() {
-            const password = document.getElementById("fundsPassword").value;
             const amount = parseInt(document.getElementById("amount").value);
-            if (password === fundsPassword && amount > 0) {
-                balance += amount; // Přidej částku do zůstatku
-                alert(`Úspěšně jste přidali ${amount} Kč!`);
+            const enteredPassword = document.getElementById("fundsPassword").value;
+            if (enteredPassword === fundsPassword && amount > 0) {
+                balance += amount; // Přidej peníze
+                alert(`Úspěšně jste přidali ${amount} Kč na účet.`);
                 updateBalance(); // Aktualizuj zůstatek
-                hideAddFunds(); // Skrýt formulář pro přidání peněz
+                hideAddFunds(); // Skryj formulář
             } else {
-                alert("Nesprávné heslo nebo částka není platná.");
+                alert("Špatné heslo nebo částka.");
             }
         }
 
-        // Aktualizace zůstatku
+        // Aktualizace zůstatku na obrazovce
         function updateBalance() {
             document.getElementById("balance").innerText = `Zůstatek: ${balance} Kč`;
         }
 
-        // Načti přihlašovací formulář při načtení stránky
-        window.onload = showLogin;
+        // Načtení přihlašovacího formuláře při načtení stránky
+        showLogin();
     </script>
 </body>
 </html>

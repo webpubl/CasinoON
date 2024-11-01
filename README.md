@@ -51,12 +51,14 @@
         let balance = 100; // Počáteční zůstatek
 
         function playGame() {
-            const win = Math.random() < 0.5; // 50% šance na výhru
             const bet = 10; // Sázka
+            const win = Math.random() < 0.5; // 50% šance na výhru
 
             if (win) {
-                balance += bet; // Zvýšení zůstatku při výhře
-                document.getElementById("result").innerText = "Vyhráli jste " + bet + " Kč!";
+                // Generování náhodné výhry mezi 10 a 100 Kč
+                const winnings = Math.floor(Math.random() * 91) + 10; // Náhodné číslo od 10 do 100
+                balance += winnings; // Zvýšení zůstatku při výhře
+                document.getElementById("result").innerText = "Vyhráli jste " + winnings + " Kč!";
             } else {
                 balance -= bet; // Snížení zůstatku při prohře
                 document.getElementById("result").innerText = "Prohráli jste " + bet + " Kč!";

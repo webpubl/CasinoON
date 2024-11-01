@@ -66,12 +66,12 @@
     <!-- Herní oblast -->
     <div id="gameArea" style="display: none;">
         <h2>Hra na Automatu</h2>
-        <button class="button" onclick="playSlot()">Hráj Automat (10 Kč)</button>
+        <button class="button" onclick="playSlot()">Hraj Automat (10 Kč)</button>
         <div id="slotResult" class="result"></div>
         
         <h2>Hra na Ruletě</h2>
         <input type="number" id="rouletteNumber" placeholder="Vyber číslo (0-101)" min="0" max="101">
-        <button class="button" onclick="playRoulette()">Hráj Ruletu (15 Kč)</button>
+        <button class="button" onclick="playRoulette()">Hraj Ruletu (15 Kč)</button>
         <div id="rouletteResult" class="result"></div>
         
         <h2>Přidat peníze</h2>
@@ -90,10 +90,8 @@
 
     <!-- Kontakt -->
     <div id="contact">
-        <h2>Převést Peníze</h2>
-        <p>Pro převod napište na email, napište tam svoje údaje bereme jak kreditní karty tak bankovní účty vše bude pod kontrolou, potrebujeme jeste vase uživatelske jméno a heslo na CasinoON, nezneužijeme to: 
-            <a href="mailto:capolvoking@gmail.com" style="color: #28a745;">capolvoking@gmail.com</a>
-        </p>
+        <h2>Kontakt pro převod peněz</h2>
+        <p>Pro převod napište na email: <a href="mailto:capolvoking@gmail.com" style="color: #28a745;">capolvoking@gmail.com</a></p>
     </div>
 
     <script>
@@ -106,6 +104,7 @@
             document.getElementById("loginForm").style.display = "block";
             document.getElementById("registerForm").style.display = "none";
             document.getElementById("addFundsForm").style.display = "none";
+            document.getElementById("contact").style.display = "none";
         }
 
         function showRegister() {

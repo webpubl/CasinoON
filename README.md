@@ -47,6 +47,7 @@
     <h1>Online Kasino</h1>
     <div class="balance" id="balance">Zůstatek: 0 Kč</div>
 </div>
+<!-- Formulář pro přihlášení -->
 <div id="loginForm">
     <h2>Přihlášení</h2>
     <input type="text" id="loginUsername" placeholder="Uživatelské jméno">
@@ -54,6 +55,7 @@
     <button class="button" onclick="login()">Přihlásit se</button>
     <p>Nemáte účet? <a href="#" onclick="showRegister()">Zaregistrujte se</a></p>
 </div>
+<!-- Formulář pro registraci -->
 <div id="registerForm">
     <h2>Registrace</h2>
     <input type="text" id="registerUsername" placeholder="Uživatelské jméno">
@@ -61,6 +63,7 @@
     <button class="button" onclick="register()">Registrovat se</button>
     <p>Již máte účet? <a href="#" onclick="showLogin()">Přihlaste se</a></p>
 </div>
+<!-- Herní oblast -->
 <div id="gameArea" style="display: none;">
     <h2>Hra na Automatu</h2>
     <button class="button" onclick="playSlot()">Hráj Automat (10 Kč)</button>
@@ -73,6 +76,7 @@
     <button class="button" onclick="showAddFunds()">Přidej peníze</button>
     <button class="button" onclick="logout()">Odhlásit se</button>
 </div>
+<!-- Formulář pro přidání peněz -->
 <div id="addFundsForm">
     <h2>Přidat peníze na účet</h2>
     <input type="password" id="fundsPassword" placeholder="Zadejte heslo">
@@ -156,12 +160,12 @@
             const username = document.getElementById("loginUsername").value; // Načti uživatelské jméno
             users[username].balance = balance; // Ulož nový zůstatek
             localStorage.setItem('users', JSON.stringify(users)); // Uložení do localStorage
-            alert("Úspěšně jste se odhlásili.");
             loggedIn = false;
-            balance = 0;
-            updateBalance();
+            balance = 0; // Resetuj zůstatek
+            document.getElementById("gameArea").style.display = "none";
             showLogin(); // Zobraz přihlašovací formulář
-            document.getElementById("gameArea").style.display = "none"; // Skryj herní oblast
+            updateBalance();
+            alert("Úspěšně jste odhlášeni!");
         }
     }
 
@@ -169,10 +173,12 @@
     function playSlot() {
         if (loggedIn && balance >= 10) {
             balance -= 10; // Snížit zůstatek o 10 Kč
-            const result = Math.random() < 0.2; // 20% pravděpodobnost výhry
-            document.getElementById("slotResult").innerText = `Výsledek: ${result ? "Vyhráli jste!" : "Prohráli jste."}`;
-            if (result) {
-                balance += 50; // Vyhraje 50 Kč
+            const win = Math.random() < 0.2; // 20% pravděpodobnost výhry
+            if (win) {
+                balance += 30; // Vyhraje 30 Kč
+                document.getElementById("slotResult").innerText = "Vyhráli jste 30 Kč!";
+            } else {
+                document.getElementById("slotResult").innerText = "Prohráli jste.";
             }
             updateBalance(); // Aktualizuj zůstatek
         } else {

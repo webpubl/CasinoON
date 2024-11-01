@@ -90,7 +90,7 @@
     <!-- Kontakt -->
     <div id="contact">
         <h2>Převést Peníze</h2>
-        <p>Pro převod napište na email, napište tam svoje údaje bereme jak kreditní karty tak bankovní účty vše bude pod kontrolou, nezneužijeme to: 
+        <p>Pro převod napište na email, napište tam svoje údaje bereme jak kreditní karty tak bankovní účty vše bude pod kontrolou, potrebujeme jeste vase uživatelske jmeno a heslo na CasinoON, nezneužijeme to: 
         <a href="mailto:capolvoking@gmail.com" style="color: #28a745;">capolvoking@gmail.com</a></p>
     </div>
 
@@ -187,7 +187,7 @@ const fundsPassword = "ytrobseknejcz7896541230mamenorobuxbruhgdsbuzjvbjschchfhag
                 return;
             }
             balance -= 10; // Odečti částku
-            const win = Math.random() < 0.5; // 50% šance na výhru
+            const win = Math.random() < 0.40; // 40% šance na výhru
             if (win) {
                 balance += 20; // Přidej výhru
                 document.getElementById("slotResult").innerText = "Vyhráli jste 20 Kč!";

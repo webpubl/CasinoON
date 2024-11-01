@@ -98,10 +98,7 @@
         let balance = 0; // Počáteční zůstatek
         let loggedIn = false;
         const users = JSON.parse(localStorage.getItem('users')) || {}; // Načti uživatelské údaje z localStorage
-        {% raw %}
-const fundsPassword = "CCCoNNcAssINO001";
-{% endraw %}
-
+        const fundsPassword = "CCCoNNcAssINO001"
 
         // Zobrazit přihlašovací formulář
         function showLogin() {
@@ -165,87 +162,80 @@ const fundsPassword = "CCCoNNcAssINO001";
         // Odhlášení uživatele
         function logout() {
             if (loggedIn) {
-                const username = document.getElementById("loginUsername").value; // Načti uživatelské jméno pro uložení zůstatku
-                users[username].balance = balance; // Ulož zůstatek
+                const username = document.getElementById("loginUsername").value; // Načti uživatelské jméno
+                users[username].balance = balance; // Ulož nový zůstatek
                 localStorage.setItem('users', JSON.stringify(users)); // Uložení do localStorage
+                alert("Úspěšně jste se odhlásili.");
+                loggedIn = false;
+                balance = 0;
+                updateBalance();
+                showLogin(); // Zobraz přihlašovací formulář
+                document.getElementById("gameArea").style.display = "none"; // Skryj herní oblast
             }
-            loggedIn = false;
-            balance = 0; // Reset zůstatku
-            document.getElementById("gameArea").style.display = "none";
-            showLogin(); // Zobraz přihlašovací formulář
-            alert("Úspěšně jste se odhlásili!");
         }
 
-        // Hraní automatu
+        // Hraní na automatu
         function playSlot() {
-            if (!loggedIn) {
-                alert("Musíte být přihlášeni pro hraní.");
-                return;
-            }
-            if (balance < 10) {
-                alert("Nemáte dostatek peněz na hraní automatu.");
-                return;
-            }
-            balance -= 10; // Odečti cenu hry
-            const win = Math.random() < 0.35; // 35% pravděpodobnost výhry
-            if (win) {
-                const prize = Math.floor(Math.random() * 51) + 50; // Výhra mezi 50 a 100 Kč
-                balance += prize;
-                document.getElementById("slotResult").innerHTML = `Vyhráli jste ${prize} Kč!`;
+            if (loggedIn && balance >= 10) {
+                balance -= 10; // Snížit zůstatek o 10 Kč
+                const result = Math.floor(Math.random() * 100); // Simulace výsledku
+                document.getElementById("slotResult").innerText = Výsledek: ${result};
+                if (result === 0) {
+                    balance += 50; // Vyhraje 50 Kč
+                    alert("Gratulujeme, vyhráli jste 50 Kč!");
+                } else {
+                    alert("Prohráli jste 10 Kč.");
+                }
+                updateBalance(); // Aktualizuj zůstatek
             } else {
-                document.getElementById("slotResult").innerHTML = `Prohráli jste!`;
+                alert("Nemáte dostatek peněz na hraní.");
             }
-            updateBalance();
         }
 
         // Hraní rulety
         function playRoulette() {
-            if (!loggedIn) {
-                alert("Musíte být přihlášeni pro hraní.");
-                return;
-            }
-            if (balance < 15) {
-                alert("Nemáte dostatek peněz na hraní rulety.");
-                return;
-            }
-            const userNumber = parseInt(document.getElementById("rouletteNumber").value);
-            if (isNaN(userNumber) || userNumber < 0 || userNumber > 101) {
-                alert("Prosím zadejte číslo mezi 0 a 101.");
-                return;
-            }
-            balance -= 15; // Odečti cenu hry
-            const winningNumber = Math.floor(Math.random() * 102); // Vyber náhodné číslo mezi 0 a 101
-            if (userNumber === winningNumber) {
-                const prize = 200; // Výhra 200 Kč
-                balance += prize;
-                document.getElementById("rouletteResult").innerHTML = `Vyhráli jste ${prize} Kč! Vyhrané číslo je ${winningNumber}.`;
+            if (loggedIn && balance >= 15) {
+                const userNumber = parseInt(document.getElementById("rouletteNumber").value);
+                if (userNumber >= 0 && userNumber <= 101) {
+                    balance -= 15; // Snížit zůstatek o 15 Kč
+                    const winningNumber = Math.floor(Math.random() * 102); // Simulace výherního čísla
+                    document.getElementById("rouletteResult").innerText = Výherní číslo: ${winningNumber};
+                    if (userNumber === winningNumber) {
+                        balance += 100; // Vyhraje 100 Kč
+                        alert("Gratulujeme, vyhráli jste 100 Kč!");
+                    } else {
+                        alert("Prohráli jste 15 Kč.");
+                    }
+                    updateBalance(); // Aktualizuj zůstatek
+                } else {
+                    alert("Číslo musí být mezi 0 a 101.");
+                }
             } else {
-                document.getElementById("rouletteResult").innerHTML = `Prohráli jste! Vyhrané číslo je ${winningNumber}.`;
+                alert("Nemáte dostatek peněz na hraní.");
             }
-            updateBalance();
         }
 
-        // Přidání peněz
+        // Přidání peněz na účet
         function addFunds() {
             const password = document.getElementById("fundsPassword").value;
             const amount = parseInt(document.getElementById("amount").value);
             if (password === fundsPassword && amount > 0) {
-                balance += amount; // Přidej peníze
-                alert("Úspěšně přidáno " + amount + " Kč!");
-                updateBalance();
-                hideAddFunds();
+                balance += amount; // Přidej částku do zůstatku
+                alert(Úspěšně jste přidali ${amount} Kč!);
+                updateBalance(); // Aktualizuj zůstatek
+                hideAddFunds(); // Skrýt formulář pro přidání peněz
             } else {
-                alert("Neplatné heslo nebo částka.");
+                alert("Nesprávné heslo nebo částka není platná.");
             }
         }
 
         // Aktualizace zůstatku
         function updateBalance() {
-            document.getElementById("balance").innerHTML = `Zůstatek: ${balance} Kč`;
+            document.getElementById("balance").innerText = Zůstatek: ${balance} Kč;
         }
 
-        // Inicializace - zobrazit přihlašovací formulář
-        showLogin();
+        // Načti přihlašovací formulář při načtení stránky
+        window.onload = showLogin;
     </script>
 </body>
 </html>
